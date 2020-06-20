@@ -6,6 +6,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 * [Discord <-> Ifttt Webhooks](#discord---ifttt-webhooks)
   * [Common mistakes I (_and others_) often run into](#common-mistakes-i-and-others-often-run-into)
   * [Useful websites to help you with regex & Discord Embeds](#useful-websites-to-help-you-with-regex--discord-embeds)
+  * [Online formatters/validators](#online-formattersvalidators)
   * [How a typical webhook must look like](#how-a-typical-webhook-must-look-like)
   * [What does `Action failure message: Rate limited by the remote server` mean?](#what-does-action-failure-message-rate-limited-by-the-remote-server-mean)
   * [Debug possible errors](#debug-possible-errors)
@@ -21,7 +22,14 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
     * [Nitter (Twitter) Tweet vi role-id](#nitter-twitter-tweet-vi-role-id)
     * [RSS Feed (Basic)](#rss-feed-basic)
     * [RSS (Advance)](#rss-advance)
+  * [Old unused stuff](#old-unused-stuff)
     * [Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)](#pizza-delivery-i-do-not-use-it-anymore-since-yagpdb-has-a-reminder-function)
+    * [Yet another basic Twitter feed](#yet-another-basic-twitter-feed)
+    * [NASA - Image of the Day](#nasa---image-of-the-day)
+    * [Basic RSS](#basic-rss)
+    * [My first webhook ever (Twitter)](#my-first-webhook-ever-twitter)
+  * [Unfinished](#unfinished)
+    * [Wind & Weather](#wind--weather)
 
 
 ## Common mistakes I (_and others_) often run into
@@ -32,15 +40,28 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 * `"icon_url"` must end in .png, .jpg, etc.
 * Both, gif and timestamps aren't possible.
 * `"timestamp":"{{EntryPublished}}",` will not work anymore.
+* A blank message requires `{"content":""}`.
 
 
 ## Useful websites to help you with regex & Discord Embeds
-* [Regular Expressions 101](https://regex101.com/)
-* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/)
 * [RSS Bridge](https://github.com/RSS-Bridge/rss-bridge)
 * [Working with Twitetr filters](http://followthehashtag.com/help/hidden-twitter-search-operators-extra-power-followthehashtag/)
 * [Advance Twitter filters](https://developer.twitter.com/en/docs/tweets/rules-and-filtering/overview/standard-operators)
 * [Discord + Ifttt step-by-step PDF Guide by Ben](https://mega.nz/#!uc5gHYZC!1dqXUlgMwtioJpcxYnhhS0rfYo2u2T8L1afpIOYtFuc)
+* [Reddit.rss to Discord filter code + parser](https://gist.github.com/Birdie0/5830535877a94ab772efeb897e58e0e8)
+
+
+## Online formatters/validators
+* [Regular Expressions 101](https://regex101.com/)
+* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/)
+* [Unicode Text Converter](http://qaz.wtf/u/convert.cgi)
+* https://codebeautify.org/jsonviewer
+* https://jsonbeautifier.org/
+* https://jsoneditoronline.org/
+* https://jsonformatter-online.com/
+* https://jsonformatter.curiousconcept.com/
+* https://jsonformatter.org/
+* https://www.jsonformatter.io/
 
 
 ## How a typical webhook must look like
@@ -57,12 +78,12 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 ## What does `Action failure message: Rate limited by the remote server` mean?
 
-This means that Discord rate limited request because IFTTT sends it too frequently. This mostly happens when IFTTT tries to send alot of requests on same webhook in short amount of time. **Discord's webhook ratelimit is 5 requests per 2 seconds**. Unable to make web request. Your server returned a 400. 400 means request is invalid. Can be caused by:
+This means that Discord rate limited request because IFTTT sends it too frequently. This mostly happens when IFTTT tries to send a lot of requests on same webhook in short amount of time. **Discord's webhook rate limit is 5 requests per 2 seconds**. Unable to make web request. Your server returned a 400. 400 means request is invalid. Can be caused by:
 - wrong method verb (should be POST)
 - wrong content-type (should be application/json)
 - bad request body:
 - empty, not json or invalid json also it should be filled correctly, [check this for more info](https://birdie0.github.io/discord-webhooks-guide/).
-- resulting json is broken (usually caused by newlines in ingredients (json doesn't support them in values) and unicode characters (rare but happens sometimes)), can be fixed by escaping variables with <<<{{ingredient}}>>> (website says to use <<double>>, ignore that)
+- resulting json is broken (usually caused by newlines in ingredients (json doesn't support them in values) and unicode characters (rare but happens sometimes)), can be fixed by escaping variables with `<<<{{ingredient}}>>>` (_the website says to use <<double>>, ignore that_)
 - error from server saying that one of fields hit limit (sadly, but ifttt doesn't show error that came from server). Try replace ingredients with data from applet logs and send it through Postman, Insomnia, other REST Client or using @glue's g.jp <JSON>, g.test <JSON> or g.webhook <JSON> commands (last one requires adding webhook through g.set webhook <url>).
 * Error 401 - webhook url isn't full. Usually happens on phone where is hard to copy url from web version of discord. I've made this simple web app https://get-discord-webhook-url.herokuapp.com/ that allows you to create webhook on phone.
 * Error 404 - url of webhook you're using has been removed. Means somebody removed it. Solution: create new webhook and replace old url.
@@ -75,14 +96,14 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 1. Open My Applets tab `https://ifttt.com/my_applets`
 2. Click the applet you have problems with.
-3. Click the gear icon (⚙️) in the corner.
+3. Click the gear icon in the corner.
 4. Click `View activity log`.
 
 
 
 ### Advance YouTube Upload finished announce feed
 
-```bash
+```json
 {
     "content": "Hello @everyone peeps, **<<<{{AuthorName}}>>>** has uploaded a new video! <<<{{Url}}>>>",
     "embeds": [
@@ -119,7 +140,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)
 
-```bash
+```json
 {
     "embeds": [
     { "title": "<<<{{Title}}>>>",
@@ -138,14 +159,14 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Thank user for the follow on Twitter
 
-```bash
+```json
 { "content":"Thx For Following: @{{FullName}}\nFollow Count: {{FollowerCount}}" }
 ```
 
 
 ### Twitch went live Feed
 
-```bash
+```json
 {
     "content": "{{ChannelName}} went live on Twitch",
     "embeds": [
@@ -181,7 +202,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Twitch with viewer count & embed preview
 
-```bash
+```json
 {
  "username":"{{ChannelName}}",
  "avatar_url":"https://avatar.glue-bot.xyz/twitch/%7B%7BChannelName%7D%7D",
@@ -219,14 +240,14 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Twitter Basic Feed
 
-```bash
+```json
 {"content":" <<<{{EntryTitle}}>>> <<<{{EntryContent}}>>> "}
 ```
 
 
 ### Twitter Advance Feed
 
-```bash
+```json
 {
   "embeds": [
     {
@@ -251,7 +272,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Twitter Advance Feed with Embed
 
-```bash
+```json
 {
   "embeds": [
     {
@@ -276,10 +297,10 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Instagram
 
-```bash
+```json
 {
-  content":":exclamation: @CKsTechNews just posted:exclamation: ",
-    "embeds": [
+  content":" :exclamation: @CKsTechNews just posted:exclamation: ",
+  "embeds": [
     {
     "title": "<<<{{Title}}>>>",
     "description": "<<<{{Description}}>>>",
@@ -307,7 +328,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### Nitter (Twitter) Tweet vi role-id
 
-```bash
+```json
 {
   "username": "<<<{{UserName}}>>>",
   "avatar_url": "https://pbs.twimg.com/profile_images/1054491558643449857/PmCE4aeO_400x400.jpg",
@@ -326,7 +347,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### RSS Feed (Basic)
 
-```bash
+```json
 {
   "embeds": [
     { "title": "{{Title}}", "url": "{{PostURL}}", "description": "{{Content}}" }
@@ -337,9 +358,9 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 
 ### RSS (Advance)
 
-```bash
+```json
 {
-  "content":"**Nova atividade no F�rum!**",
+  "content":"**Test**",
   "embeds": [
     {
       "title":"{{EntryTitle}}",
@@ -356,16 +377,17 @@ This means that Discord rate limited request because IFTTT sends it too frequent
         "name":"{{EntryAuthor}}",
         "url":"{{FeedUrl}}",
         "icon_url":"https://cdn.discordapp.com/embed/avatars/0.png"
-        }
-        }
-        ]
+      }
+     }
+   ]
 }
 ```
 
+## Old unused stuff
 
 ### Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)
 
-```bash
+```json
 {
   "embeds": [{
     "author": {
@@ -374,6 +396,140 @@ This means that Discord rate limited request because IFTTT sends it too frequent
       "icon_url": "https://i.imgur.com/V8ZjaMa.jpg"
     },
     "description": "Your pizza is ready!\n:timer:ETA: 10 minutes."
-  }]
+   }
+  ]
+}
+```
+
+
+### Yet another basic Twitter feed
+
+```json
+{
+  "username": "@CKsTechNews tweeted",
+  "content": "@USerName tweeted this {{CreatedAt}} : {{LinkToTweet}} "
+}
+```
+
+
+### NASA - Image of the Day
+
+```json
+{
+  "content": "NASA posted something new!",
+  "embeds": [
+    {
+      "title": "<<<{{ImageTitle}}>>>",
+    "description": "<<<{{Description}}>>>",
+    "color":15193,
+    "image":
+    {
+      "url": "<<<{{ImageSourceURL}}>>>"},
+      "author":
+      {
+      "name":"Image of the Day by NASA"},
+      "footer":
+      {
+        "text": "<<<{{PublishedDate}}>>>"
+    }
+    }
+  ]
+}
+```
+
+
+### Basic RSS
+
+```json
+{
+  "embeds": [
+    {
+      "title": "? New Post ? ",
+      "description": "<<<{{Caption}}>>>",
+      "image": {
+        "url": "<<<{{SourceUrl}}>>>"
+      },
+      "footer": {
+        "text": "<<<{{CreatedAt}}>>>"
+      },
+      "url": "<<<{{Url}}>>>"
+    }
+  ]
+}
+```
+
+
+### My first webhook ever (Twitter)
+
+```json
+{
+    "content":"@<<<{{UserName}}>>> posted: <<<{{LinkToTweet}}>>> <<<{{TweetEmbedCode}}>>>"
+}
+```
+
+
+## Unfinished
+
+
+### Wind & Weather
+
+Why is it unfinished? Because I found no way to create a secure webhook which does not expose the wunderground.com API key to Discord.
+
+```json
+{
+  "content": "New Wind & Weather Update",
+  "embeds": [
+    {
+
+      "color": 103900,
+
+
+
+"fields": [
+        {
+        "name": "Current Temperature :thermometer:",
+        "value": "{{CurrentTempCelsius}} C.",
+        "inline": true
+
+        },
+        {
+        "name": "Humidity::droplet: ",
+        "value": "{{Humidity}}",
+        "inline": true
+
+        },
+        {
+        "name": "Max. Temperature Today::arrow_up: ",
+        "value": "{{HighTempCelsius}}",
+        "inline": false
+
+        },
+
+        {
+        "name": "Min. Temperature Today::arrow_down: ",
+        "value": "{{LowTempCelsius}}",
+        "inline": true
+        },
+
+        {
+        "name": "CurrentCondition::sunglasses:",
+        "value": "{{CurrentCondition}}",
+        "inline": true
+
+        },
+        {
+        "name": "WindSpeed::wind_chime:",
+        "value": "{{WindSpeedKph}} Kph",
+        "inline": true
+
+        }
+      ]
+    },
+    {
+      "color": 12845619,
+      "title": "How to cancel your subscription:",
+      "description": "Cancel your subscription to daily weather updates by unreacting to the bell icon in #announcements. \n**NOTE**: Updates are directly posted from: **https://www.wunderground.com/**."
+    }
+  ]
 }
 ```
