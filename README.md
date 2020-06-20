@@ -11,6 +11,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
   * [What does `Action failure message: Rate limited by the remote server` mean?](#what-does-action-failure-message-rate-limited-by-the-remote-server-mean)
   * [Debug possible errors](#debug-possible-errors)
     * [Advance YouTube Upload finished announce feed](#advance-youtube-upload-finished-announce-feed)
+    * [Android App Updates](#android-app-updates)
     * [Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)](#reddit-game-findings-works-basically-with-every-giveawaygift-subreddit)
     * [Thank user for the follow on Twitter](#thank-user-for-the-follow-on-twitter)
     * [Twitch went live Feed](#twitch-went-live-feed)
@@ -18,12 +19,17 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
     * [Twitter Basic Feed](#twitter-basic-feed)
     * [Twitter Advance Feed](#twitter-advance-feed)
     * [Twitter Advance Feed with Embed](#twitter-advance-feed-with-embed)
-    * [Instagram](#instagram)
+    * [Instagram (complex)](#instagram-complex)
+    * [Instagram (simple)](#instagram-simple)
     * [Nitter (Twitter) Tweet vi role-id](#nitter-twitter-tweet-vi-role-id)
     * [RSS Feed (Basic)](#rss-feed-basic)
     * [RSS (Advance)](#rss-advance)
-  * [Old unused stuff](#old-unused-stuff)
+  * [Old and unused stuff](#old-and-unused-stuff)
     * [Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)](#pizza-delivery-i-do-not-use-it-anymore-since-yagpdb-has-a-reminder-function)
+    * [Tumblr](#tumblr)
+    * [Facebook](#facebook)
+    * [SoundClood](#soundclood)
+    * [GitHub Webhook](#github-webhook)
     * [Yet another basic Twitter feed](#yet-another-basic-twitter-feed)
     * [NASA - Image of the Day](#nasa---image-of-the-day)
     * [Basic RSS](#basic-rss)
@@ -41,6 +47,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 * Both, gif and timestamps aren't possible.
 * `"timestamp":"{{EntryPublished}}",` will not work anymore.
 * A blank message requires `{"content":""}`.
+* Make sure you select the correct if ... then argument e.g. If RSS then Webhook, If Twitter then...
 
 
 ## Useful websites to help you with regex & Discord Embeds
@@ -49,11 +56,12 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 * [Advance Twitter filters](https://developer.twitter.com/en/docs/tweets/rules-and-filtering/overview/standard-operators)
 * [Discord + Ifttt step-by-step PDF Guide by Ben](https://mega.nz/#!uc5gHYZC!1dqXUlgMwtioJpcxYnhhS0rfYo2u2T8L1afpIOYtFuc)
 * [Reddit.rss to Discord filter code + parser](https://gist.github.com/Birdie0/5830535877a94ab772efeb897e58e0e8)
+* [Google-Forms-to-Discord](https://github.com/Iku/Google-Forms-to-Discord/blob/master/google%20script.js)
 
 
 ## Online formatters/validators
 * [Regular Expressions 101](https://regex101.com/)
-* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/)
+* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/) (_ensure you enable "webhook mode"_)
 * [Unicode Text Converter](http://qaz.wtf/u/convert.cgi)
 * https://codebeautify.org/jsonviewer
 * https://jsonbeautifier.org/
@@ -137,6 +145,17 @@ This means that Discord rate limited request because IFTTT sends it too frequent
     ]
 }
 ```
+
+
+### Android App Updates
+
+```json
+{
+  "username":"App Update",
+  "content":"<<<{{Name}}>>>(<<<{{Version}}>>>)\n <<<{{AppStoreUrl}}>>> \n Changelog: <<<{{ReleaseNotes}}>>>"
+}
+```
+
 
 ### Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)
 
@@ -256,13 +275,13 @@ This means that Discord rate limited request because IFTTT sends it too frequent
       "fields": [
         {
           "name": "Link to Tweet",
-          "value": "Click [here]({{LinkToTweet}}) to go to  the original tweet"
+          "value": "Click [here]({{LinkToTweet}}) to go to the original tweet."
         }
       ],
       "author": {
-        "name": "{{UserName}} tweeted:",
-        "url": "https://twitter.com/CKsTechNews/",
-        "icon_url": "https://pbs.twimg.com/profile_images/1054491558643449857/PmCE4aeO_400x400.jpg"
+      "name": "{{UserName}} tweeted:",
+      "url": "https://twitter.com/CKsTechNews/",
+      "icon_url": "https://pbs.twimg.com/profile_images/1054491558643449857/PmCE4aeO_400x400.jpg"
       }
     }
   ]
@@ -295,20 +314,20 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 ```
 
 
-### Instagram
+### Instagram (complex)
 
 ```json
 {
-  content":" :exclamation: @CKsTechNews just posted:exclamation: ",
+  "content":" :exclamation: @CKsTechNews just posted :exclamation: ",
   "embeds": [
     {
     "title": "<<<{{Title}}>>>",
     "description": "<<<{{Description}}>>>",
-    "color":"12662148",
+    "color":12662148,
     "url": "<<<{{Url}}>>>",
     "image":
     {
-      "url":" {{SourceUrl}}"
+      "url": "<<<{{SourceUrl}}>>>"
     },
       "author":
     {
@@ -319,7 +338,22 @@ This means that Discord rate limited request because IFTTT sends it too frequent
     {
       "icon_url": "https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png",
       "text": "@CKStechNews <<<{{CreatedAt}}>>>"
-      }
+    }
+   }
+  ]
+}
+```
+
+
+### Instagram (simple)
+
+```json
+{
+  "embeds":[
+    {
+      "title":"New Post From CKsTechTestWebHook on Instagram!",
+      "description":" <<<{{Caption}}>>>",
+      "color":12592603
     }
   ]
 }
@@ -383,7 +417,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 }
 ```
 
-## Old unused stuff
+## Old and unused stuff
 
 ### Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)
 
@@ -397,6 +431,108 @@ This means that Discord rate limited request because IFTTT sends it too frequent
     },
     "description": "Your pizza is ready!\n:timer:ETA: 10 minutes."
    }
+  ]
+}
+```
+
+
+### Tumblr
+
+```json
+{
+   "username":"Bot Name",
+   "avatar_url":"The URL of a Profile Picture/Thumbnail For The Bot Goes Here",
+   "embeds":[
+      {
+         "title":"{{Title}}",
+         "url":"{{Url}}",
+         "description":"{{Body}}",
+         "footer":{
+            "text":"Uploaded On: {{Time}}"
+         }
+      }
+   ]
+}
+```
+
+### Facebook
+
+I'm not active on Facebook (or not really), so I dropped it.
+
+```json
+{
+  "username":"Bot Name",
+  "avatar_url":"The URL of a Profile Picture/Thumbnail For The Bot Goes Here",
+  "embeds": [
+    {
+      "title":"{{UpdatedAt}}",
+      "url":"{{PageUrl}}",
+      "author":
+      {
+        "name":"{{PageName}}",
+        "url":"https://facebook.com/{{PageName}}"
+      },
+      "description":"{{Message}}"
+      }
+    ]
+}
+```
+
+
+### SoundClood
+
+Sadly I'm not really active on SC anymore (_no time_).
+
+```json
+{
+    "content": "New track posted to SoundCloud",
+    "embeds": [
+        {
+            "title": "<<<{{Title}}>>>",
+            "url": "<<<{{TrackUrl}}>>>",
+            "color": 16742144,
+            "footer": {
+                "text": "<<<{{Tags}}>>> || <<<{{CreatedAt}}>>>"
+            },
+            "thumbnail": {
+                "url": "<<<{{ImageUrl}}>>>"
+            },
+            "author": {
+                "name": "<<<{{Username}}>>>",
+                "url": "<<<{{UserProfileUrl}}>>>",
+                "icon_url": "<<<{{ImageUrl}}>>>"
+            },
+            "fields": [
+                {
+                    "name": "Description",
+                    "value": "<<<{{Description}}>>>"
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+### GitHub Webhook
+
+I replaced it with Yappy Bot. `timestamp` line might invalidate json.
+
+```json
+{
+  "embeds": [
+    {
+      "title": "[<<<{{RepositoryName}}>>>] <<<{{PullRequestTitle}}>>>",
+      "description": "<<<{{PullRequestBody}}>>>",
+      "url": "<<<{{PullRequestURL}}>>>",
+      "color": 21953,
+      "timestamp": "<<<{{CreatedAt}}>>>",
+      "author": {
+        "name": "<<<{{AuthorUsername}}>>>",
+        "url": "https://github.com/<<<{{AuthorUsername}}>>>",
+        "icon_url": "<<<{{AuthorAvatarImageURL}}>>>"
+      }
+    }
   ]
 }
 ```
