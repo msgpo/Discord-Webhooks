@@ -1,13 +1,14 @@
-# Discord-Webhooks
+# Discord <-> ifttt Webhooks
 
-Just my collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are linked together with [Discord webhooks](https://support.discord.com/hc/en-us/articles/228383668-Webhooks-gebruiken) right into my server. 
+Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are linked with my [Discord webhooks](https://support.discord.com/hc/en-us/articles/228383668-Webhooks-gebruiken).
 
 
-## Common mistakes I (_and others_) often make
+## Common mistakes I (_and others_) run into
 
-* "color" is in HEX format, has to be decimal format!
+* `"color"` attribute is in HEX format it has to be decimal format.
 * `{{Name}}` must be in `<<<{{Name}}>>>`.
 * Tweets typically need to remove inner's, they should look like `{"content":"<<<{{Url}}>>> <<<{{SourceUrl}}>>>"}`.
+* `"icon_url"` must end in .png, .jpg, etc.
 
 
 ## Useful websites to help you with regex & Discord Embeds
@@ -18,7 +19,7 @@ Just my collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are l
 * [Advance Twitter filters](https://developer.twitter.com/en/docs/tweets/rules-and-filtering/overview/standard-operators)
 
 
-## How a typical webhook must look like 
+## How a typical webhook must look like
 
 **On the website do the following**
 
@@ -32,7 +33,7 @@ Just my collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are l
 
 ## What does `Action failure message: Rate limited by the remote server` mean?
 
-This means that Discord ratelimited request because IFTTT sends it too frequently. This mostly happens when IFTTT tries to send alot of requests on same webhook in short amount of time. Discord's webhook ratelimit is 5 requests per 2 seconds. Unable to make web request. Your server returned a 400. 400 means request is invalid. Can be caused by:
+This means that Discord rate limited request because IFTTT sends it too frequently. This mostly happens when IFTTT tries to send alot of requests on same webhook in short amount of time. **Discord's webhook ratelimit is 5 requests per 2 seconds**. Unable to make web request. Your server returned a 400. 400 means request is invalid. Can be caused by:
 - wrong method verb (should be POST)
 - wrong content-type (should be application/json)
 - bad request body:
@@ -52,21 +53,21 @@ This means that Discord ratelimited request because IFTTT sends it too frequentl
 3. Click the gear icon (⚙️) in the corner.
 4. Click `View activity log`.
 
-### YouTube Upload finished
+### Advance YouTube Upload finished announce feed
 
 ```bash
 {
-    "content": "Hello everyone peeps, **{{AuthorName}}** has uploaded a new video!",
+    "content": "Hello @everyone peeps, **<<<{{AuthorName}}>>>** has uploaded a new video! <<<{{Url}}>>>",
     "embeds": [
       {
-        "title": "{{Title}}",
-        "description": "{{Description}}",
-        "url": "{{Url}}",
-        "color": 2407171,
+        "title": "<<<{{Title}}>>>",
+        "description": "<<<{{Description}}>>>",
+        "url": "<<<{{Url}}>>>",
+        "color": 6570404,
         "fields": [
           {
             "name": "Timestamp",
-            "value": "{{CreatedAt}}",
+            "value": "<<<{{CreatedAt}}>>>",
             "inline": true
           },
           {
@@ -76,9 +77,13 @@ This means that Discord ratelimited request because IFTTT sends it too frequentl
           }
         ],
         "author": {
-          "name": "{{AuthorName}}",
-          "url": "link",
-          "icon_url": "link"
+          "name": "<<<{{AuthorName}}>>>",
+          "url": "https://www.youtube.com/channel/",
+          "icon_url": "https://yt3.ggpht.com/a/AATXAJyI_DBeZc7O5cJ-Ih5ovltedR1HBIvcVH9ERQ=s100-c-k-c0xffffffff-no-rj-mo"
+        },
+        "footer": {
+          "text": "Notice: Please be patient if the bot is broken, or there is no Application Officer around attending to you.",
+          "icon_url": "https://yt3.ggpht.com/a/AATXAJyI_DBeZc7O5cJ-Ih5ovltedR1HBIvcVH9ERQ=s100-c-k-c0xffffffff-no-rj-mo"
         }
       }
     ]
@@ -88,16 +93,16 @@ This means that Discord ratelimited request because IFTTT sends it too frequentl
 ### Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)
 
 ```bash
-{ 
-    "embeds": [ 
-    { "title": "<<<{{Title}}>>>", 
-    "url": "<<<{{PostURL}}>>>", 
-    "description": "<<<{{Content}}>>>", 
-    "thumbnail": 
-          { 
-          "url": "<<<{{ImageURL}}>>>" }, 
+{
+    "embeds": [
+    { "title": "<<<{{Title}}>>>",
+    "url": "<<<{{PostURL}}>>>",
+    "description": "<<<{{Content}}>>>",
+    "thumbnail":
+          {
+          "url": "<<<{{ImageURL}}>>>" },
           "footer": { "icon_url": "https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png",
-          "text": "/u/<<<{{Author}}>>> | <<<{{PostedAt}}>>>" 
+          "text": "/u/<<<{{Author}}>>> | <<<{{PostedAt}}>>>"
         }
       }
     ]
@@ -111,36 +116,37 @@ This means that Discord ratelimited request because IFTTT sends it too frequentl
 ```
 
 
-### Twitch went live Feed 
+### Twitch went live Feed
 
 ```bash
 {
     "content": "{{ChannelName}} went live on Twitch",
-    "embeds": [{
-    "title": "{{ChannelUrl}}",
-    "url": "{{ChannelUrl}}",
-    "color": 6570404,
-    "footer": {
-    "text": "{{CreatedAt}}"
-    },
-    "image": {
-    "url": "{{StreamPreview}}"
-    },
-    "author": {
-    "name": "{{ChannelName}} is now streaming"
-    },
-    "fields": [
+    "embeds": [
     {
-    "name": "Playing",
-    "value": "{{Game}}",
-    "inline": true
+      "title": "{{ChannelUrl}}",
+      "url": "{{ChannelUrl}}",
+      "color": 6570404,
+      "footer": {
+      "text": "{{CreatedAt}}"
+    },
+      "image": {
+      "url": "{{StreamPreview}}"
+    },
+      "author": {
+      "name": "{{ChannelName}} is now streaming"
+    },
+      "fields": [
+    {
+      "name": "Playing",
+      "value": "{{Game}}",
+      "inline": true
     },
     {
-    "name": "Started at (streamer timezone)",
-        "value": "{{CreatedAt}}",
-    "inline": true
-        }
-      ]
+      "name": "Started at (streamer timezone)",
+      "value": "{{CreatedAt}}",
+      "inline": true
+      }
+     ]
     }
   ]
 }
@@ -171,3 +177,49 @@ This means that Discord ratelimited request because IFTTT sends it too frequentl
 }
 ```
 
+
+### Instagram
+
+```bash
+{
+  content":":exclamation: @CKsTechNews just posted:exclamation: ",
+    "embeds": [
+    {
+    "title": "<<<{{Title}}>>>",
+    "description": "<<<{{Description}}>>>",
+    "color":"12662148",
+    "url": "<<<{{Url}}>>>",
+    "image":
+    {
+      "url":" {{SourceUrl}}"
+    },
+      "author":
+    {
+      "name":"CKsTechNews - Test",
+      "url":"https://www.instagram.com/CKsTechNews/",
+      "icon_url":"https://random-image-random_n.png",
+      "footer":
+    {
+      "icon_url": "https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png",
+      "text": "@CKStechNews <<<{{CreatedAt}}>>>"
+      }
+    }
+  ]
+}
+```
+
+### Nitter Tweet
+
+```bash
+{
+  "username": "<<<{{UserName}}>>>",
+  "avatar_url": "https://avatar.glue-bot.xyz/twitter/{{UserName}}",
+  "content": "<@&role-id>",
+  "embeds": [{
+    "title": "New Tweet!",
+    "url": "<<<{{LinkToTweet}}>>>",
+    "color": 33972,
+    "description": "<<<{{Text}}>>>"
+  }]
+}
+```
