@@ -1,19 +1,42 @@
 # Discord <-> Ifttt Webhooks
 
-Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are linked with my [Discord webhooks](https://support.discord.com/hc/en-us/articles/228383668-Webhooks-gebruiken).
+Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are linked to my [Discord webhooks](https://support.discord.com/hc/en-us/articles/228383668-Webhooks-gebruiken).
 
 
-## Common mistakes I (_and others_) run into
+* [Discord <-> Ifttt Webhooks](#discord---ifttt-webhooks)
+  * [Common mistakes I (_and others_) often run into](#common-mistakes-i-and-others-often-run-into)
+  * [Useful websites to help you with regex & Discord Embeds](#useful-websites-to-help-you-with-regex--discord-embeds)
+  * [How a typical webhook must look like](#how-a-typical-webhook-must-look-like)
+  * [What does `Action failure message: Rate limited by the remote server` mean?](#what-does-action-failure-message-rate-limited-by-the-remote-server-mean)
+  * [Debug possible errors](#debug-possible-errors)
+    * [Advance YouTube Upload finished announce feed](#advance-youtube-upload-finished-announce-feed)
+    * [Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)](#reddit-game-findings-works-basically-with-every-giveawaygift-subreddit)
+    * [Thank user for the follow on Twitter](#thank-user-for-the-follow-on-twitter)
+    * [Twitch went live Feed](#twitch-went-live-feed)
+    * [Twitch with viewer count & embed preview](#twitch-with-viewer-count--embed-preview)
+    * [Twitter Basic Feed](#twitter-basic-feed)
+    * [Twitter Advance Feed](#twitter-advance-feed)
+    * [Twitter Advance Feed with Embed](#twitter-advance-feed-with-embed)
+    * [Instagram](#instagram)
+    * [Nitter (Twitter) Tweet vi role-id](#nitter-twitter-tweet-vi-role-id)
+    * [RSS Feed (Basic)](#rss-feed-basic)
+    * [RSS (Advance)](#rss-advance)
+    * [Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)](#pizza-delivery-i-do-not-use-it-anymore-since-yagpdb-has-a-reminder-function)
+
+
+## Common mistakes I (_and others_) often run into
 
 * `"color"` attribute is in HEX format it has to be decimal format.
 * `{{Name}}` must be in `<<<{{Name}}>>>`.
 * Tweets typically need to remove inner's, they should look like `{"content":"<<<{{Url}}>>> <<<{{SourceUrl}}>>>"}`.
 * `"icon_url"` must end in .png, .jpg, etc.
+* Both, gif and timestamps aren't possible.
+* `"timestamp":"{{EntryPublished}}",` will not work anymore.
 
 
 ## Useful websites to help you with regex & Discord Embeds
-* [https://regex101.com/](https://regex101.com/)
-* [https://leovoel.github.io/embed-visualizer](https://leovoel.github.io/embed-visualizer/)
+* [Regular Expressions 101](https://regex101.com/)
+* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/)
 * [RSS Bridge](https://github.com/RSS-Bridge/rss-bridge)
 * [Working with Twitetr filters](http://followthehashtag.com/help/hidden-twitter-search-operators-extra-power-followthehashtag/)
 * [Advance Twitter filters](https://developer.twitter.com/en/docs/tweets/rules-and-filtering/overview/standard-operators)
@@ -22,11 +45,11 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 ## How a typical webhook must look like
 
-**On the website do the following**
+**On the Ifttt website do the following**
 
-* `Webhooks` -> `Make a web request`
+* Go to `Webhooks` -> `Make a web request`
 * Fill the fields with the values:
-* Url - `Webhook url` // The one you get from Discord Webhook menu
+* URL - `Webhook url` _// The one you get from Discord Webhook menu_
 * As Method choose: `POST`
 * Content Type - `application/json`
 * As Body, only one example: `{"content": "{{LinkToTweet}}"}` //This is the part you can freely change (see examples below)
@@ -45,7 +68,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 * Error 404 - url of webhook you're using has been removed. Means somebody removed it. Solution: create new webhook and replace old url.
 * Error 405 - Happens when you use other than POST methods.
 
-## Debug errors
+
+## Debug possible errors
 
 **Where the IFTTT logs are?**
 
@@ -53,6 +77,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 2. Click the applet you have problems with.
 3. Click the gear icon (⚙️) in the corner.
 4. Click `View activity log`.
+
+
 
 ### Advance YouTube Upload finished announce feed
 
@@ -176,17 +202,26 @@ This means that Discord rate limited request because IFTTT sends it too frequent
        "fields":[
          {
            "name":"Game", "value":" {{Game}}", "inline":true
-           },
-           { "name":"Viewers", "value":" {{CurrentViewers}}", "inline":true
+         },
+         {
+           "name":"Viewers", "value":" {{CurrentViewers}}", "inline":true
            }
            ],
            "image":
-           { "url":" {{StreamPreview}}"
-           }
-           }
-           ]
-           }
+           {
+           "url":" {{StreamPreview}}"
+     }
+    }
+  ]
+}
  ```
+
+
+### Twitter Basic Feed
+
+```bash
+{"content":" <<<{{EntryTitle}}>>> <<<{{EntryContent}}>>> "}
+```
 
 
 ### Twitter Advance Feed
@@ -210,6 +245,31 @@ This means that Discord rate limited request because IFTTT sends it too frequent
       }
     }
   ]
+}
+```
+
+
+### Twitter Advance Feed with Embed
+
+```bash
+{
+  "embeds": [
+    {
+      "title": "LINK",
+      "color": 1942002,
+      "url": "{{LinkToTweet}}",
+      "author":{
+        "name": "CKsTechNews (@CKsTechNews)",
+        "url": "https://twitter.com/CKsTechNews/",
+        "icon_url": "https://pbs.twimg.com/profile_images/1054491558643449857/PmCE4aeO_400x400.jpg"
+        },
+        "footer":{
+          "text": "CKsTechNews! at {{CreatedAt}}!",
+          "icon_url": "https://i.imgur.com/b4Nmq13.png"
+        },
+        "description": "CKsTechNews tweeted this : {{Text}}"
+        }
+      ]
 }
 ```
 
@@ -244,7 +304,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 }
 ```
 
-### Nitter Tweet vi role-id
+
+### Nitter (Twitter) Tweet vi role-id
 
 ```bash
 {
@@ -259,5 +320,60 @@ This means that Discord rate limited request because IFTTT sends it too frequent
     "description": "<<<{{Text}}>>>"
     }
   ]
+}
+```
+
+
+### RSS Feed (Basic)
+
+```bash
+{
+  "embeds": [
+    { "title": "{{Title}}", "url": "{{PostURL}}", "description": "{{Content}}" }
+  ]
+}
+```
+
+
+### RSS (Advance)
+
+```bash
+{
+  "content":"**Nova atividade no F�rum!**",
+  "embeds": [
+    {
+      "title":"{{EntryTitle}}",
+      "description":"{{EntryContent}}",
+      "url":"https://discordapp.com",
+      "color":14510884,
+      "footer":{"icon_url":"https://cdn.discordapp.com/embed/avatars/0.png",
+      "text":"{{FeedTitle}}"},
+      "thumbnail":
+      {
+        "url":"https://cdn.discordapp.com/embed/avatars/0.png"},
+        "author":
+      {
+        "name":"{{EntryAuthor}}",
+        "url":"{{FeedUrl}}",
+        "icon_url":"https://cdn.discordapp.com/embed/avatars/0.png"
+        }
+        }
+        ]
+}
+```
+
+
+### Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)
+
+```bash
+{
+  "embeds": [{
+    "author": {
+      "name": "CK's Delivery Girl",
+      "url": "https://www.reddit.com/r/Pizza/",
+      "icon_url": "https://i.imgur.com/V8ZjaMa.jpg"
+    },
+    "description": "Your pizza is ready!\n:timer:ETA: 10 minutes."
+  }]
 }
 ```
