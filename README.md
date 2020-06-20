@@ -51,12 +51,14 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 
 ## Useful websites to help you with regex & Discord Embeds
+* [Beginner tutorial on how to use Discord Webhooks](https://markramsey.com/2019/12/03/bringing-twitter-tweets-into-discord-channels/)
 * [RSS Bridge](https://github.com/RSS-Bridge/rss-bridge)
 * [Working with Twitetr filters](http://followthehashtag.com/help/hidden-twitter-search-operators-extra-power-followthehashtag/)
 * [Advance Twitter filters](https://developer.twitter.com/en/docs/tweets/rules-and-filtering/overview/standard-operators)
 * [Discord + Ifttt step-by-step PDF Guide by Ben](https://mega.nz/#!uc5gHYZC!1dqXUlgMwtioJpcxYnhhS0rfYo2u2T8L1afpIOYtFuc)
 * [Reddit.rss to Discord filter code + parser](https://gist.github.com/Birdie0/5830535877a94ab772efeb897e58e0e8)
 * [Google-Forms-to-Discord](https://github.com/Iku/Google-Forms-to-Discord/blob/master/google%20script.js)
+* [Tutorial how to use Discord Plex Notifications](https://blog.matiasnaess.no/2020/02/25/discord-plex-notifications/)
 
 
 ## Online formatters/validators
