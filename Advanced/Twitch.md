@@ -1,3 +1,33 @@
+###  Filter code for Twitch to Discord Webhooks notifications with fixed stream preview
+
+```json
+const body: any = {
+  embeds: [{
+    author: {
+      name: `${Trigger.ChannelName} started streaming!`,
+      value: Trigger.ChannelUrl,
+      icon_url: `https://avatar.glue-bot.xyz/twitch/${Trigger.ChannelName}`
+    },
+    fields: [{
+      name: 'Game',
+      value: Trigger.Game || 'No Game',
+      inline: true
+    }, {
+      name: 'Viewers',
+      value: Trigger.CurrentViewers,
+      inline: true
+    }],
+    image: {
+      url: `${Trigger.StreamPreview}?${Math.floor(Math.random() * 1000000)}`
+    },
+    color: 0x9146ff,
+    timestamp: Meta.triggerTime
+  }]
+};
+
+MakerWebhooks.makeWebRequest.setBody(JSON.stringify(body));
+```
+
 ### Twitch Live notification after x minutes
 
 ```json
