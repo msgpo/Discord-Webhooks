@@ -19,6 +19,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
     * [Twitter Basic Feed](#twitter-basic-feed)
     * [Twitter Advance Feed](#twitter-advance-feed)
     * [Twitter Advance Feed with Embed](#twitter-advance-feed-with-embed)
+    * [Instagram (basic)](#instagram-basic)
     * [Instagram (complex)](#instagram-complex)
     * [Instagram (simple)](#instagram-simple)
     * [Nitter (Twitter) Tweet vi role-id](#nitter-twitter-tweet-vi-role-id)
@@ -314,6 +315,29 @@ This means that Discord rate limited request because IFTTT sends it too frequent
       ]
 }
 ```
+
+
+
+### Instagram (basic)
+
+```json
+{
+  "embeds": [
+    {
+      "title":"Title",
+      "url":"{{Url}}",
+      "author":
+      {
+        "name":"CKsTechNewstest",
+        "url":"https://www.instagram.com/CKsTechNewstest/"
+      },
+      "description":"{{Caption}}",
+      "image": {"url": "{{SourceUrl}}"}
+      }
+    ]
+}
+```
+
 
 
 ### Instagram (complex)
