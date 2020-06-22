@@ -46,35 +46,6 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 ## Creating your Organization
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Spoiler</title>
-    <style type="text/css">
-      blockquote.spoiler {
-        background-color : rgb(238,238,238);
-        padding : 10pt 10pt 1pt 10pt;
-      }
-      blockquote.spoiler * {
-        opacity : 0;
-      }
-      blockquote.spoiler:hover * {
-        opacity : 1;
-      }
-    </style>
-  </head>
-  <body>
-    Before spoiler.
-    <blockquote class="spoiler">
-      <p>Before image</p>
-      <img alt="Create your webapplet with filter code." src="https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true"/>
-      <p>After image.</p>
-    </blockquote>
-    After spoiler.
-  </body>
-</html>
-
-
 * Go to [https://platform.ifttt.com/](https://platform.ifttt.com/) and (Sign in)
 * Click (Get Started)
 * On the next page fill the required fields and click (Next)
@@ -83,6 +54,8 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 
 ## Creating an Applet with Filter Code
+
+<img src="[https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true](https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true)" width="300" height="500" />
 
 * Click (New Applet)
 * For if section select Trigger Service and Action, fill values below as you usually do in classic mode.
