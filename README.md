@@ -6,7 +6,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 * [Discord <-> Ifttt Webhooks](#discord---ifttt-webhooks)
   * [Creating your Organization](#creating-your-organization)
   * [Creating an Applet with Filter Code](#creating-an-applet-with-filter-code)
-  * [Activating the Applet](#activating-the-applet)
+  * [Activating your first Applet](#activating-your-first-applet)
   * [Common mistakes I (_and others_) often run into](#common-mistakes-i-and-others-often-run-into)
   * [Useful websites to help you with regex & Discord Embeds](#useful-websites-to-help-you-with-regex--discord-embeds)
   * [Online formatters/validators](#online-formattersvalidators)
@@ -55,7 +55,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 ## Creating an Applet with Filter Code
 
-<img src="[https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true](https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true)" width="300" height="500" />
+<img src="https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true" width="400" height="650" />
 
 * Click (New Applet)
 * For if section select Trigger Service and Action, fill values below as you usually do in classic mode.
@@ -91,7 +91,7 @@ MakerWebhooks.makeWebRequest.setBody(JSON.stringify(body));
 * Save your first applet!
 
 
-## Activating the Applet
+## Activating your first Applet
 * After you saved applet you have to activate it, click on Activate it on IFTTT
 * Press (Save)!
 * Done!
