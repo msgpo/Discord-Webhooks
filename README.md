@@ -10,6 +10,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
   * [How a typical webhook must look like](#how-a-typical-webhook-must-look-like)
   * [What does `Action failure message: Rate limited by the remote server` mean?](#what-does-action-failure-message-rate-limited-by-the-remote-server-mean)
   * [Debug possible errors](#debug-possible-errors)
+  * [My first webhook ever (Twitter)](#my-first-webhook-ever-twitter)
     * [Advance YouTube Upload finished announce feed](#advance-youtube-upload-finished-announce-feed)
     * [Android App Updates](#android-app-updates)
     * [Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)](#reddit-game-findings-works-basically-with-every-giveawaygift-subreddit)
@@ -21,7 +22,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
     * [Twitter Advance Feed with Embed](#twitter-advance-feed-with-embed)
     * [Instagram (basic)](#instagram-basic)
     * [Instagram (complex)](#instagram-complex)
-    * [Instagram (simple)](#instagram-simple)
+    * [Instagram (very simple)](#instagram-very-simple)
     * [Nitter (Twitter) Tweet vi role-id](#nitter-twitter-tweet-vi-role-id)
     * [RSS Feed (Basic)](#rss-feed-basic)
     * [RSS (Advance)](#rss-advance)
@@ -33,10 +34,11 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
     * [GitHub Webhook](#github-webhook)
     * [Yet another basic Twitter feed](#yet-another-basic-twitter-feed)
     * [NASA - Image of the Day](#nasa---image-of-the-day)
-    * [Basic RSS](#basic-rss)
-    * [My first webhook ever (Twitter)](#my-first-webhook-ever-twitter)
+    * [Normal RSS-Feed](#normal-rss-feed)
+    * [Google Calendar Event](#google-calendar-event)
   * [Unfinished](#unfinished)
     * [Wind & Weather](#wind--weather)
+    * [Card Info](#card-info)
 
 
 ## Common mistakes I (_and others_) often run into
@@ -111,6 +113,18 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 4. Click `View activity log`.
 
 
+## My first webhook ever (Twitter)
+
+That's basically how I started. Pretty basic, nothing special.
+
+```json
+{
+    "content":"@<<<{{UserName}}>>> posted: <<<{{LinkToTweet}}>>> <<<{{TweetEmbedCode}}>>>"
+}
+```
+
+**[`^        back to top        ^`](#readme)**
+
 
 ### Advance YouTube Upload finished announce feed
 
@@ -149,6 +163,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
+
 
 ### Android App Updates
 
@@ -158,6 +174,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
   "content":"<<<{{Name}}>>>(<<<{{Version}}>>>)\n <<<{{AppStoreUrl}}>>> \n Changelog: <<<{{ReleaseNotes}}>>>"
 }
 ```
+**[`^        back to top        ^`](#readme)**
 
 
 ### Reddit Game Findings (_works basically with every Giveaway/Gift Subreddit_)
@@ -178,6 +195,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
     ]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 ### Thank user for the follow on Twitter
 
@@ -222,6 +241,9 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
+
+
 ### Twitch with viewer count & embed preview
 
 ```json
@@ -258,6 +280,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
   ]
 }
  ```
+**[`^        back to top        ^`](#readme)**
 
 
 ### Twitter Basic Feed
@@ -316,6 +339,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
 
 
 ### Instagram (basic)
@@ -371,7 +395,7 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 ```
 
 
-### Instagram (simple)
+### Instagram (very simple)
 
 ```json
 {
@@ -384,6 +408,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
   ]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 
 ### Nitter (Twitter) Tweet vi role-id
@@ -403,6 +429,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
   ]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 
 ### RSS Feed (Basic)
@@ -443,6 +471,9 @@ This means that Discord rate limited request because IFTTT sends it too frequent
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
+
+
 ## Old and unused stuff
 
 ### Pizza Delivery (_I do not use it anymore since YAGPDB has a reminder function_)
@@ -460,6 +491,8 @@ This means that Discord rate limited request because IFTTT sends it too frequent
   ]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 
 ### Tumblr
@@ -480,6 +513,9 @@ This means that Discord rate limited request because IFTTT sends it too frequent
    ]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
+
 
 ### Facebook
 
@@ -503,6 +539,8 @@ I'm not active on Facebook (or not really), so I dropped it.
     ]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 
 ### SoundClood
@@ -539,6 +577,8 @@ Sadly I'm not really active on SC anymore (_no time_).
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
+
 
 ### GitHub Webhook
 
@@ -563,6 +603,8 @@ I replaced it with Yappy Bot. `timestamp` line might invalidate json.
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
+
 
 ### Yet another basic Twitter feed
 
@@ -572,6 +614,8 @@ I replaced it with Yappy Bot. `timestamp` line might invalidate json.
   "content": "@USerName tweeted this {{CreatedAt}} : {{LinkToTweet}} "
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 
 ### NASA - Image of the Day
@@ -599,8 +643,10 @@ I replaced it with Yappy Bot. `timestamp` line might invalidate json.
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
 
-### Basic RSS
+
+### Normal RSS-Feed
 
 ```json
 {
@@ -620,14 +666,45 @@ I replaced it with Yappy Bot. `timestamp` line might invalidate json.
 }
 ```
 
+**[`^        back to top        ^`](#readme)**
 
-### My first webhook ever (Twitter)
+
+### Google Calendar Event
 
 ```json
 {
-    "content":"@<<<{{UserName}}>>> posted: <<<{{LinkToTweet}}>>> <<<{{TweetEmbedCode}}>>>"
+  "content": "<@user-id> <<<{{Title}}>>> is starting in around 30 minutes! ",
+  "embeds": [{
+    "title": "{{Title}}",
+    "description": "<<<{{Description}}>>>",
+    "url": "<<<{{EventUrl}}>>>",
+    "color": 526591,
+    "author": {
+      "name": "SSI Calendar",
+      "url": "",
+      "icon_url": "https://calendar.google.com/googlecalendar/images/favicon_v2014_31.ico"
+    },
+    "fields": [
+      {
+        "name": "Starts",
+        "value": "<<<{{Starts}}>>>",
+        "inline": true
+      },
+      {
+        "name": "Ends",
+        "value": "<<<{{Ends}}>>>",
+        "inline": true
+      },
+      {
+        "name": "Location",
+        "value": "<<<{{Where}}>>>"
+      }
+    ]
+  }]
 }
 ```
+
+**[`^        back to top        ^`](#readme)**
 
 
 ## Unfinished
@@ -695,3 +772,41 @@ Why is it unfinished? Because I found no way to create a secure webhook which do
   ]
 }
 ```
+
+
+### Card Info
+
+I did not had the time to implement a better description.
+
+```json
+{
+  "embeds": [
+    {
+    "title": "New Season",
+    "description": "SECRETING",
+    "url": "SECRETING",
+    "color": 1481652,
+    "footer": {
+      "icon_url": "https://cdn.discordapp.com/attachments/719632493514457241/720592060742238288/void.png",
+      "text": "NTT Security Systems by CHEF-KOCH"
+    },
+    "fields": [
+      {
+        "name": "Information",
+        "value": "SECRETING"
+      },
+      {
+        "name": "Additonal",
+        "value": "SECRETING"
+      },
+      {
+        "name": "Card Link",
+        "value": "[Click Here](SECRETING)"
+      }
+    ]
+  }]
+}
+```
+
+**[`^        back to top        ^`](#readme)**
+
