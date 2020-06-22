@@ -43,7 +43,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 ## Common mistakes I (_and others_) often run into
 
-* `"color"` attribute is in HEX format it has to be decimal format.
+* `"color"` attribute is in HEX format, it has to be decimal format.
 * `{{Name}}` must be in `<<<{{Name}}>>>`.
 * Tweets typically need to remove inner's, they should look like `{"content":"<<<{{Url}}>>> <<<{{SourceUrl}}>>>"}`.
 * `"icon_url"` must end in .png, .jpg, etc.
@@ -65,16 +65,16 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 
 ## Online formatters/validators
+* [Json Beautifier](https://jsonbeautifier.org/)
+* [Json Editor online](https://jsoneditoronline.org/)
+* [Json Formatter Online](https://jsonformatter-online.com/)
+* [Json Validator & Formatter](https://jsonformatter.curiousconcept.com/)
+* [Json Viewer](https://codebeautify.org/jsonviewer)
+* [Json formatter](https://jsonformatter.org/)
+* [Live Json Formatter](https://www.jsonformatter.io/)
 * [Regular Expressions 101](https://regex101.com/)
-* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/) (_ensure you enable "webhook mode"_)
 * [Unicode Text Converter](http://qaz.wtf/u/convert.cgi)
-* https://codebeautify.org/jsonviewer
-* https://jsonbeautifier.org/
-* https://jsoneditoronline.org/
-* https://jsonformatter-online.com/
-* https://jsonformatter.curiousconcept.com/
-* https://jsonformatter.org/
-* https://www.jsonformatter.io/
+* [Visualizer and validator for Discord embeds](https://leovoel.github.io/embed-visualizer/) (_ensure you enable "webhook mode"_)
 
 
 ## How a typical webhook must look like
