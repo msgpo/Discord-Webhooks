@@ -57,7 +57,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) applets w
 
 ## Creating an Applet with Filter Code
 
-<img src="https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true" width="500" height="800" />
+<img src="https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true" width="600" height="900" />
 
 * Click (New Applet)
 * For if section select Trigger Service and Action, fill values below as you usually do in classic mode.
@@ -208,12 +208,14 @@ That's basically how I started. Pretty basic, nothing special.
             "inline": true
           }
         ],
-        "author": {
+        "author":
+        {
           "name": "<<<{{AuthorName}}>>>",
           "url": "https://www.youtube.com/channel/",
           "icon_url": "https://yt3.ggpht.com/a/AATXAJyI_DBeZc7O5cJ-Ih5ovltedR1HBIvcVH9ERQ=s100-c-k-c0xffffffff-no-rj-mo"
         },
-        "footer": {
+        "footer":
+        {
           "text": "Notice: Please be patient if the bot is broken, or there is no Application Officer around attending to you.",
           "icon_url": "https://yt3.ggpht.com/a/AATXAJyI_DBeZc7O5cJ-Ih5ovltedR1HBIvcVH9ERQ=s100-c-k-c0xffffffff-no-rj-mo"
         }
@@ -241,12 +243,14 @@ That's basically how I started. Pretty basic, nothing special.
 ```json
 {
     "embeds": [
-    { "title": "<<<{{Title}}>>>",
-    "url": "<<<{{PostURL}}>>>",
-    "description": "<<<{{Content}}>>>",
-    "thumbnail":
+    {
+     "title": "<<<{{Title}}>>>",
+     "url": "<<<{{PostURL}}>>>",
+     "description": "<<<{{Content}}>>>",
+     "thumbnail":
           {
-          "url": "<<<{{ImageURL}}>>>" },
+          "url": "<<<{{ImageURL}}>>>"
+          },
           "footer": { "icon_url": "https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png",
           "text": "/u/<<<{{Author}}>>> | <<<{{PostedAt}}>>>"
         }
@@ -274,13 +278,16 @@ That's basically how I started. Pretty basic, nothing special.
       "title": "{{ChannelUrl}}",
       "url": "{{ChannelUrl}}",
       "color": 6570404,
-      "footer": {
+      "footer":
+      {
       "text": "{{CreatedAt}}"
     },
-      "image": {
+      "image":
+      {
       "url": "{{StreamPreview}}"
     },
-      "author": {
+      "author":
+      {
       "name": "{{ChannelName}} is now streaming"
     },
       "fields": [
@@ -418,9 +425,10 @@ That's basically how I started. Pretty basic, nothing special.
         "url":"https://www.instagram.com/CKsTechNewstest/"
       },
       "description":"{{Caption}}",
-      "image": {"url": "{{SourceUrl}}"}
+      "image": {"url": "{{SourceUrl}}"
       }
-    ]
+    }
+  ]
 }
 ```
 
