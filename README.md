@@ -367,31 +367,7 @@ That's basically how I started. Pretty basic, nothing special.
 ### Instagram (complex)
 
 ```json
-{
-  "content":" :exclamation: @CKsTechNews just posted :exclamation: ",
-  "embeds": [
-    {
-    "title": "<<<{{Title}}>>>",
-    "description": "<<<{{Description}}>>>",
-    "color":12662148,
-    "url": "<<<{{Url}}>>>",
-    "image":
-    {
-      "url": "<<<{{SourceUrl}}>>>"
-    },
-      "author":
-    {
-      "name":"CKsTechNews - Test",
-      "url":"https://www.instagram.com/CKsTechNews/",
-      "icon_url":"https://random-image-random_n.png",
-      "footer":
-    {
-      "icon_url": "https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png",
-      "text": "@CKStechNews <<<{{CreatedAt}}>>>"
-    }
-   }
-  ]
-}
+//
 ```
 
 
