@@ -1,9 +1,11 @@
 # Discord <-> Ifttt Webhooks
 
-Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps which are linked to my [Discord webhooks](https://support.discord.com/hc/en-us/articles/228383668-Webhooks-gebruiken).
+Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) applets which are linked to my [Discord webhooks](https://support.discord.com/hc/en-us/articles/228383668-Webhooks-gebruiken).
 
 
+## Table of Contents
 * [Discord <-> Ifttt Webhooks](#discord---ifttt-webhooks)
+  * [Table of Contents](#table-of-contents)
   * [Creating your Organization](#creating-your-organization)
   * [Creating an Applet with Filter Code](#creating-an-applet-with-filter-code)
   * [Activating your first Applet](#activating-your-first-applet)
@@ -55,7 +57,7 @@ Just my little collection of [Ifttt.com](https://ifttt.com/my_applets) apps whic
 
 ## Creating an Applet with Filter Code
 
-<img src="https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true" width="400" height="650" />
+<img src="https://github.com/CHEF-KOCH/Discord-Webhooks/blob/master/Screenshots/Applet%20with%20filter%20code.png?raw=true" width="500" height="800" />
 
 * Click (New Applet)
 * For if section select Trigger Service and Action, fill values below as you usually do in classic mode.
